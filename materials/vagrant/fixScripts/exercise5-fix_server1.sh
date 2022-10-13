@@ -1,12 +1,50 @@
 #!/bin/bash
 #add fix to exercise5-server1 here
-echo "192.168.60.11 server2" | sudo tee -a /etc/hosts
-sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+
+
+echo '-----BEGIN OPENSSH PRIVATE KEY-----
+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
+-----END OPENSSH PRIVATE KEY-----' > /home/vagrant/.ssh/id_rsa
+
+chown vagrant:vagrant /home/vagrant/.ssh/id_rsa
+chmod 0600 /home/vagrant/.ssh/id_rsa
+
+echo 'StrictHostKeyChecking no' | sudo tee -a /etc/ssh/ssh_config
+
 sudo service sshd restart
 
-
-ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
-echo "vagrant" >pass.txt
-sudo apt-get update
-sudo apt-get install sshpass
-sshpass -f pass.txt  ssh-copy-id -i ~/.ssh/id_rsa.pub vagrant@server2 -o StrictHostKeyChecking=no

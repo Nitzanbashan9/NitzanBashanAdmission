@@ -1,12 +1,7 @@
 #!/bin/bash
 #add fix to exercise5-server2 here
-echo "192.168.60.10 server1" | sudo tee -a /etc/hosts
-sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-sudo service sshd restart
 
+echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDIihEJ7Rb/xEu3KGq5YJKnRYgXsFn5XQ/jlZ0O+TeGrV/atiEgx1x7Bu8T6cC8+OnN/Ak42RCWGfmfAhUXL8zSkJRRw3QnnLm/vGWpe9/hXASpm54s/4aEiWNyHSglAU1yiZisCigUV4tkc4DvEttFjj3noODt2yH/kHqQK82pjUt21USVStdxzo3nQ2MR/ctzwJ3EgALQRdWsg2w07dsxhiihl8Nv23veFhyu9RFurhKjKaAtkq/TiYo4+YoAIWbcf7Lr9lZ6wd/iinqM3cnaA+ZKI/E9N2FSMnJY2dfrK1kAMhjL6VVlgXi9JqNDzQhITGXDUMXfJeC41ApiF0GYaT5rcmFJJVBUX1+verwNS902HB7DyY1d1alDwgZca/v2zjxURBLnOAxfHSOS6ILt/UN8qlVoTLi6sKG3dlEC/LPtKv8IYcc/IKK1xdfYriyNod1531f7FTeLK70zBgLAmgr3I0cqD9BzdtLXLlhXFYOqcqupdt/hlqsX9I47IfU=' >> /home/vagrant/.ssh/authorized_keys
 
-ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
-echo "vagrant" >pass.txt
-sudo apt-get update
-sudo apt-get install sshpass
-sshpass -f pass.txt  ssh-copy-id -i ~/.ssh/id_rsa.pub vagrant@server1 -o StrictHostKeyChecking=no
+chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys 
+chmod 0600 /home/vagrant/.ssh/authorized_keys
